@@ -33,8 +33,10 @@ WSADATA data;
 			} else {
 				wprintf(L"Entry %d: %ws ",i+1,buffer[i].szProtocol);
 			}
-			if(buffer[i].ProtocolChain.ChainLen==1) {
+			if (buffer[i].ProtocolChain.ChainLen==1) {
 				wprintf(L"(Base Service Provider)\n");
+			} else if(buffer[i].ProtocolChain.ChainLen==0) {
+				wprintf(L"(Layered Protocol Entry\n");
 			} else {
 				wprintf(L"(Layered Chain Entry)\n");
 			}
