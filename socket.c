@@ -11,18 +11,22 @@
 #include <objbase.h>
 #include <tchar.h>
 #include <wchar.h>
+#define STR(X) #X
+#define sSTR(X) STR(X)
+#ifndef VERSION
+#define VERSION L"1.0"
+#endif
 int main(int argc, char *argv[]) {
+wprintf(L"Socket Info Utility - Version %s\n",VERSION);
 WSADATA data;
 //WCHAR Guid[40] = {0};
 	if(WSAStartup(MAKEWORD(1,1), &data) != 0) {
 		fprintf(stderr, "WSAStartup failed!\r\n");
 		exit(1);
 	}
-	LPWSAPROTOCOL_INFO buffer = malloc(16384);
-	DWORD lngt =0;
-	lngt = 32000;
+	DWORD lngt = 32768;
+	LPWSAPROTOCOL_INFO buffer = malloc(lngt);
 	int ret = 0;
-	int retI = 0;
 	ret = WSAEnumProtocols(NULL,buffer,&lngt);
 	if(ret != SOCKET_ERROR) {
 		wprintf(L"Enum suceeded with %d protocols!\n",ret);
