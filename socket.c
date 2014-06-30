@@ -11,13 +11,11 @@
 #include <objbase.h>
 #include <tchar.h>
 #include <wchar.h>
-#define STR(X) #X
-#define sSTR(X) STR(X)
 #ifndef VERSION
-#define VERSION L"1.0"
+#define VERSION 1.02
 #endif
 int main(int argc, char *argv[]) {
-wprintf(L"Socket Info Utility - Version %s\n",VERSION);
+wprintf(L"Socket Info Utility - Version %2.2f\n",VERSION);
 WSADATA data;
 //WCHAR Guid[40] = {0};
 	if(WSAStartup(MAKEWORD(1,1), &data) != 0) {
